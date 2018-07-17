@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@stencil/dev_server":"0.0.18"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "serve": "stencil-dev-server --root src --httpPort 8081"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/royoky/test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/royoky/test/issues"
+  },
+  "homepage": "https://github.com/royoky/test#readme"
+}
