@@ -1,7 +1,7 @@
 const mainElt = document.getElementsByTagName("main")[0];
-//console.log(mainElt);
-
-fetch('moviesTab.json')
+//using fetch API
+//---------------------------------------------------------------
+/* fetch('moviesTab.json')
   .then(function(response) {
     //throw 'error'; //pour éviter d'avoir l'erreur sur le foreach
     return response.json();
@@ -23,7 +23,33 @@ fetch('moviesTab.json')
   .catch(error => {
       console.error(error);
       console.log(error);
-  })
+  }) */
+
+//same code using async await
+//-----------------------------------------------------
+async function fetchMovies() {
+    try {
+        let response = await fetch('moviesTab.json');
+        const movies = await response.json(); //do not forget the () !!
+        
+        movies.forEach(movie => {   //function(movie)
+            const mDiv = document.createElement("div");
+            const mImg = document.createElement('img');
+            mImg.setAttribute('alt', movie.alt);
+            mImg.setAttribute('src', movie.poster);
+            const mPar = document.createElement('p');
+            mPar.innerText = movie.title;
+            mDiv.appendChild(mImg);
+            mDiv.appendChild(mPar)
+            mainElt.appendChild(mDiv);    
+            mImg.addEventListener('click',createDescription.bind(mImg, movie));
+        })
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+fetchMovies();
 
 
 function createDescription(movie) {
@@ -58,10 +84,10 @@ function createDescription(movie) {
     mSpanMod.onclick = function() {
         closePopup();
         }
+    // When the user clicks Escape, close the modal
+    document.addEventListener('keydown', detectEscapeKey);
 }
 
-// When the user clicks Escape, close the modal
-document.addEventListener('keypress', detectEscapeKey);
 
 //Function to detect the Escape key and close the popup
 function detectEscapeKey (event) {
