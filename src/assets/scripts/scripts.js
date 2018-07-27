@@ -29,7 +29,7 @@ const mainElt = document.getElementsByTagName("main")[0];
 //-----------------------------------------------------
 async function fetchMovies() {
     try {
-        let response = await fetch('moviesTab.json');
+        let response = await fetch('data/moviesTab.json');
         const movies = await response.json(); //do not forget the () !!
         
         movies.forEach(movie => {   //function(movie)
